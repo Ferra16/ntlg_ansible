@@ -1,0 +1,25 @@
+- name: Ping Servers
+  hosts: all
+  become: yes
+  vars:
+   packages:
+   - net-tools
+   - git 
+   - tree 
+   - htop
+   - mc
+   - vim
+  tasks:
+  - name: Task ping
+    ping:
+  - name: Task apt update
+    apt:
+     upgrade: yes  
+     update_cache: yes
+  - name: apt install
+    apt:
+     name: "{{packages}}"
+     state: latest
+  - name: Copy file
+    copy: src=./test.txt dest=/usr/local/bin/ansible/test1.txt
+

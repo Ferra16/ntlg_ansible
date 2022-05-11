@@ -1,0 +1,25 @@
+ansible@b940261cc55f:/usr/local/bin/ansible$ ansible-playbook playbook.yaml -kK -v
+Using /etc/ansible/ansible.cfg as config file
+SSH password:
+BECOME password[defaults to SSH password]:
+
+PLAY [Ping Servers] *********************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************************
+ok: [node1]
+
+TASK [Task ping] ************************************************************************************************************************************************************************************************
+ok: [node1] => {"changed": false, "ping": "pong"}
+
+TASK [Task apt update] ******************************************************************************************************************************************************************************************
+[WARNING]: The value "True" (type bool) was converted to "'True'" (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.
+ok: [node1] => {"changed": false, "msg": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nCalculating upgrade...\n0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.\n", "stderr": "", "stderr_lines": [], "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nCalculating upgrade...\n0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.\n", "stdout_lines": ["Reading package lists...", "Building dependency tree...", "Reading state information...", "Calculating upgrade...", "0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded."]}
+
+TASK [apt install] **********************************************************************************************************************************************************************************************
+ok: [node1] => {"cache_update_time": 1652298257, "cache_updated": false, "changed": false}
+
+TASK [Copy file] ************************************************************************************************************************************************************************************************
+changed: [node1] => {"changed": true, "checksum": "9ff17cae0c4681f29de3aaa3feaa0a35cb96cbb8", "dest": "/usr/local/bin/ansible/test1.txt", "gid": 0, "group": "root", "md5sum": "6963d3b88f75c6fec194813d82209f42", "mode": "0644", "owner": "root", "size": 4558, "src": "/home/ansible/.ansible/tmp/ansible-tmp-1652299481.7370229-4258-185311268984556/source", "state": "file", "uid": 0}
+
+PLAY RECAP ******************************************************************************************************************************************************************************************************
+node1                      : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
